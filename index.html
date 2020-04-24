@@ -54,8 +54,12 @@
     for (const statName in me) {
       if (me.hasOwnProperty(statName)) {
         const stat = me[statName];
-        const element = document.getElementById('me-' + statName);
-        element.getElementsByTagName('strong')[0].innerHTML = stat;
+        try {
+          const element = document.getElementById('me-' + statName);
+          element.getElementsByTagName('strong')[0].innerHTML = stat;
+        } catch (error) {
+          console.error("Missing field:", statName)
+        }
       }
     }
 

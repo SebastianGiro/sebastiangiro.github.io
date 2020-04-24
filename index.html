@@ -48,6 +48,10 @@
       'sex': 'M'
     };
 
+    loadStats(me);
+  }
+
+  function loadStats(me) {
     const birthday = new Date('September 25, 92 GMT-0300');
     const meStats = document.getElementById('me-stats');
 
@@ -62,15 +66,13 @@
         }
       }
     }
-
-    console.log(me);
   }
 
   function getAge(birthday) {
-    var today = new Date();
+    const today = new Date();
     const birthDate = new Date(birthday);
-    var age = today.getFullYear() - birthDate.getFullYear();
-    var m = today.getMonth() - birthDate.getMonth();
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const m = today.getMonth() - birthDate.getMonth();
     if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
       age--;
     }

@@ -12,16 +12,67 @@
 </head>
 <body>
 
-  <div class="window" style="margin: 32px; width: 250px">
+  <div class="window window-stats">
     <div class="title-bar">
       <div class="title-bar-text">
-        My First VB4 Program
+        Sebastian Giro Stats
+      </div>
+      <div class="title-bar-controls">
+        <button aria-label="Minimize"></button>
+        <button aria-label="Maximize"></button>
+        <button aria-label="Close"></button>
       </div>
     </div>
-    <div class="window-body">
-      <p>Hello, world!</p>
+
+    <div id="me-stats" class="window-body">
+      <p id="me-alive"><span>Alive:</span> <strong>-</strong></p>
+      <p id="me-height"><span>Height:</span> <strong>-</strong></p>
+      <p id="me-age"><span>Age:</span> <strong>-</strong></p>
+      <p id="me-sex"><span>Sex:</span> <strong>-</strong></p>
     </div>
   </div>
 
 </body>
+
+<script>
+
+  window.addEventListener('load', () => {
+    this.init();
+  }, false);
+
+  function init() {
+    const me = {
+      'alive': true,
+      'height': '1.79cm',
+      'age': this.getAge('September 25, 92 GMT-0300'),
+      'sex': 'M'
+    };
+
+    const birthday = new Date('September 25, 92 GMT-0300');
+    const meStats = document.getElementById('me-stats');
+
+    for (const statName in me) {
+      if (me.hasOwnProperty(statName)) {
+        const stat = me[statName];
+        const element = document.getElementById('me-' + statName);
+        element.getElementsByTagName('strong')[0].innerHTML = stat;
+      }
+    }
+
+    console.log(me);
+  }
+
+  function getAge(birthday) {
+    var today = new Date();
+    const birthDate = new Date(birthday);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    return age;
+  }
+
+</script>
+
 </html>
